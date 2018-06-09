@@ -1,86 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <title>简历制作工具</title>
-  </head>
-  <body>
-    <div class="page">
-      <aside>
-        <button>保存</button>
-        <button>分享</button>
-        <button>换肤</button>
-        <button>打印</button>
-        <button>退出</button>
-      </aside>
-      <main>
-        <div class="resume">
-          <section>
-            <h1>姓名</h1>
-            <p>出生年月|性别|应聘职位|邮箱</p>
-          </section>
-          <section>
-            <h2>技能</h2>
-            <ul>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">完美实现设计稿</div>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">完美实现设计稿</div>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">完美实现设计稿</div>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <span class="name">静态页面制作</span>
-                <div class="description">完美实现设计稿</div>
-              </li>
-            </ul>
-          </section>
-          <section>
-            <h2>项目经历</h2>
-            <ol>
-              <li class="name">我的简历</li>
-              <li class="keywords">jQuery、CSS3、响应式</li>
-              <li class="description">我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员</li>
-              <li class="link">http://xxx/xxx</li>
-              <li class="cover">http://xxx/xxx</li>
-            </ol>
-            <ol>
-              <li class="name">我的简历</li>
-              <li class="keywords">jQuery、CSS3、响应式</li>
-              <li class="description">我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员</li>
-              <li class="link">http://xxx/xxx</li>
-              <li class="cover">http://xxx/xxx</li>
-            </ol>
-            <ol>
-              <li class="name">我的简历</li>
-              <li class="keywords">jQuery、CSS3、响应式</li>
-              <li class="description">我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员</li>
-              <li class="link">http://xxx/xxx</li>
-              <li class="cover">http://xxx/xxx</li>
-            </ol>
-            <ol>
-              <li class="name">我的简历</li>
-              <li class="keywords">jQuery、CSS3、响应式</li>
-              <li class="description">我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员</li>
-              <li class="link">http://xxx/xxx</li>
-              <li class="cover">http://xxx/xxx</li>
-            </ol>
-          </section>
-        </div>
-      </main>
-    </div>
-    <script src="../vendors/av-min.js"></script>
-    <script src="./js/av.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8">
+  <title>简历制作工具</title>
+  <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/editable-span.css">
+</head>
+
+<body>
+  <div class="page" id="page">
+    <aside>
+      <div class="upper">
+        <ul>
+          <li>
+            <button class="button">保存</button>
+          </li>
+          <li>
+            <button class="button">分享</button>
+          </li>
+          <li>
+            <button class="button">换肤</button>
+          </li>
+          <li>
+            <button class="button">打印</button>
+          </li>
+        </ul>
+      </div>
+      <div class="down">
+        <button class="button">退出</button>
+      </div>
+    </aside>
+    <main>
+      <div class="resume">
+        <section>
+          <h1>
+            <editable-span v-bind:value="resume.name" v-on:edit="onEdit('name' , $event)"></editable-span>
+          </h1>
+          <p>应聘职位：
+            <editable-span v-bind:value="resume.jobTitle" v-on:edit="onEdit('jobTitle' , $event)"></editable-span>
+          </p>
+          <p class="profile">生日：<editable-span v-bind:value="resume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
+            ||<editable-span v-bind:value="resume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
+            ||<editable-span v-bind:value="resume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
+            ||<editable-span v-bind:value="resume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
+            </p>
+        </section>
+        <section class="skills">
+          <h2>技能</h2>
+          <ul>
+            <li>
+              <span class="name">静态页面制作</span>
+              <div class="description">完美实现设计稿</div>
+            </li>
+            <li>
+              <span class="name">静态页面制作</span>
+              <div class="description">完美实现设计稿</div>
+            </li>
+            <li>
+              <span class="name">静态页面制作</span>
+              <div class="description">完美实现设计稿</div>
+            </li>
+            <li>
+              <span class="name">静态页面制作</span>
+              <div class="description">完美实现设计稿</div>
+            </li>
+          </ul>
+        </section>
+        <section class="projects">
+          <h2>项目经历</h2>
+          <ol>
+            <li>
+              <header>
+                <div class="start">
+                  <h3 class="name">项目1</h3>
+                  <span class="link">http://xxx/xxx</span>
+                </div>
+                <div class="end">
+                  <li class="keywords">jQuery、CSS3、响应式</li>
+                </div>
+              </header>
+              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+            </li>
+            <li>
+              <header>
+                <div class="start">
+                  <h3 class="name">项目1</h3>
+                  <span class="link">http://xxx/xxx</span>
+                </div>
+                <div class="end">
+                  <li class="keywords">jQuery、CSS3、响应式</li>
+                </div>
+              </header>
+              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+            </li>
+            <li>
+              <header>
+                <div class="start">
+                  <h3 class="name">项目1</h3>
+                  <span class="link">http://xxx/xxx</span>
+                </div>
+                <div class="end">
+                  <li class="keywords">jQuery、CSS3、响应式</li>
+                </div>
+              </header>
+              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+            </li>
+            <li>
+              <header>
+                <div class="start">
+                  <h3 class="name">项目1</h3>
+                  <span class="link">http://xxx/xxx</span>
+                </div>
+                <div class="end">
+                  <li class="keywords">jQuery、CSS3、响应式</li>
+                </div>
+              </header>
+              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+            </li>
+          </ol>
+
+        </section>
+      </div>
+    </main>
+  </div>
+  <script src="../vendors/av-min.js"></script>
+  <script src="./js/av.js"></script>
+  <script src="../vendors/vue.min.js"></script>
+  <script src="./js/editable-span.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+
 </html>
