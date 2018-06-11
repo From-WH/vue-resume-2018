@@ -26,7 +26,6 @@ let app = new Vue({
       this.resume[key] = value  //console.log(this === app)
     },
     onSignUp(e) {
-      console.log(this.signUp)
       const user = new AV.User();
       // 设置用户名
       user.setUsername(this.signUp.email);
@@ -34,15 +33,18 @@ let app = new Vue({
       user.setPassword(this.signUp.password);
       // 设置邮箱
       user.setEmail(this.signUp.email);
-      user.signUp().then(function (users) {
-        console.log(users);
+      user.signUp().then((users)=> {
+        this.signUpVisible = false
+        alert('注册成功，开始编辑你的简历吧')
       }, function (error) {
+        alert('注册失败！')
       });
     },
     onLogin(e) {
-      AV.User.logIn(this.login.email, this.login.password).then(function (users) {
-        console.log(users);
-      }, function (error) {
+      AV.User.logIn(this.login.email, this.login.password).then( (users)=> {
+        this.loginVisible = false
+        this.signUpVisible = false
+      }, (error)=> {
         if (error.code = 211) {
           alert('还没有注册喔～快去注册吧')
         }else if(error.code === 210){
@@ -53,7 +55,7 @@ let app = new Vue({
     onClickSave() {
       var currentUser = AV.User.current();
       if (!currentUser) {
-        this.showLogin()
+        this.loginVisible = true
       }
       else {
         this.saveResume()
@@ -80,6 +82,14 @@ let app = new Vue({
       user.set('resume', this.resume)
       // 保存到云端
       user.save()
+    },
+    onLogOut(){
+      if(this.onClickSave.currentUser === null){
+
+      }else{
+        AV.User.logOut();
+        window.location.reload()
+      }
     },
   }
 })
