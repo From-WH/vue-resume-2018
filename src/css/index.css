@@ -9,6 +9,7 @@
     *::before {
       box-sizing: border-box
     }
+    div[v-cloak]{display: none;}
     body{
       font-size: 18px;
     }

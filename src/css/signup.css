@@ -1,3 +1,4 @@
+div[v-cloak]{display: none;}
 .signUp{
   position: fixed;
   min-width: 300px;

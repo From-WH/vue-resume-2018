@@ -88,6 +88,7 @@ let app = new Vue({
 
       }else{
         AV.User.logOut();
+        alert('注销成功')
         window.location.reload()
       }
     },
