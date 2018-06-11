@@ -131,37 +131,37 @@
     </main>
 
     <div v-show="loginVisible" class="login">
-      <form class="form">
+      <form @submit.prevent="onLogin" class="form">
         <h2>登录</h2>
         <button @click="loginVisible = false">退出</button>
         <div class="row">
           <label>邮箱</label>
-          <input type="text">
+          <input type="text" v-model="login.email">
         </div>
         <div class="row">
           <label>密码</label>
-          <input type="password">
+          <input type="password" v-model="login.password">
         </div>
         <div class="actions">
-          <button>确定</button>
+          <button type="submit">确定</button>
           <a @click="signUpVisible = true;loginVisible = false" href="#">注册</a>
         </div>
       </form>
     </div>
-    <div v-show="signUpVisible" class="signUp">
-        <form class="form">
+    <div v-show="signUpVisible" class="signUp">   
+        <form class="form" @submit.prevent="onSignUp"> <!-- .prevent 事件修饰符 -->
           <h2>注册</h2>
           <button @click="signUpVisible = false">退出</button>
           <div class="row">
             <label>注册邮箱</label>
-            <input type="text">
+            <input type="text" v-model="signUp.email">
           </div>
           <div class="row">
             <label>密码</label>
-            <input type="password">
+            <input type="password" v-model="signUp.password">
           </div>
           <div class="actions">
-            <button>提交</button>
+            <button type="submit">提交</button>
             <a @click="loginVisible = true;signUpVisible = false" href="#">登录</a>
           </div>
         </form>
