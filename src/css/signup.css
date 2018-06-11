@@ -1,0 +1,23 @@
+.signUp{
+  position: fixed;
+  min-width: 300px;
+  min-height: 400px;
+  transform: translateX(-50%,-50%);
+  top: 50%;
+  left: 50%;
+  margin-left: -150px;
+  margin-top: -200px;
+  background-color: #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signUp > form{
+  min-width: 100%;
+  min-height: 100%;
+}
+.signUp > form > .row > label{
+  display: inline-block;
+  min-width: 4em;
+}

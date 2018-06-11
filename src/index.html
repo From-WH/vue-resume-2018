@@ -6,6 +6,8 @@
   <title>简历制作工具</title>
   <link rel="stylesheet" href="./css/index.css">
   <link rel="stylesheet" href="./css/editable-span.css">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/signup.css">
 </head>
 
 <body>
@@ -14,7 +16,7 @@
       <div class="upper">
         <ul>
           <li>
-            <button class="button">保存</button>
+            <button class="button" v-on:click="onClickSave">保存</button>
           </li>
           <li>
             <button class="button">分享</button>
@@ -40,11 +42,15 @@
           <p>应聘职位：
             <editable-span v-bind:value="resume.jobTitle" v-on:edit="onEdit('jobTitle' , $event)"></editable-span>
           </p>
-          <p class="profile">生日：<editable-span v-bind:value="resume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
-            ||<editable-span v-bind:value="resume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
-            ||<editable-span v-bind:value="resume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
-            ||<editable-span v-bind:value="resume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
-            </p>
+          <p class="profile">生日：
+            <editable-span v-bind:value="resume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
+            ||性别：
+            <editable-span v-bind:value="resume.gender" v-on:edit="onEdit('gender' , $event)"></editable-span>
+            ||Email：
+            <editable-span v-bind:value="resume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
+            ||Phone：
+            <editable-span v-bind:value="resume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
+          </p>
         </section>
         <section class="skills">
           <h2>技能</h2>
@@ -123,6 +129,43 @@
         </section>
       </div>
     </main>
+
+    <div v-show="loginVisible" class="login">
+      <form class="form">
+        <h2>登录</h2>
+        <button @click="loginVisible = false">退出</button>
+        <div class="row">
+          <label>邮箱</label>
+          <input type="text">
+        </div>
+        <div class="row">
+          <label>密码</label>
+          <input type="password">
+        </div>
+        <div class="actions">
+          <button>确定</button>
+          <a @click="signUpVisible = true;loginVisible = false" href="#">注册</a>
+        </div>
+      </form>
+    </div>
+    <div v-show="signUpVisible" class="signUp">
+        <form class="form">
+          <h2>注册</h2>
+          <button @click="signUpVisible = false">退出</button>
+          <div class="row">
+            <label>注册邮箱</label>
+            <input type="text">
+          </div>
+          <div class="row">
+            <label>密码</label>
+            <input type="password">
+          </div>
+          <div class="actions">
+            <button>提交</button>
+            <a @click="loginVisible = true;signUpVisible = false" href="#">登录</a>
+          </div>
+        </form>
+      </div>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>
