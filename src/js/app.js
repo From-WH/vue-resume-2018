@@ -4,6 +4,7 @@ let app = new Vue({
     editting: false,
     loginVisible: false,
     signUpVisible: false,
+    shareVisible:false,
     currentUser: {
       objectId: undefined,
       email: '',
@@ -37,7 +38,7 @@ let app = new Vue({
         link:'http://xxx',
         keywords:'请填写技术栈',
         description:'请详细描述你的项目'
-      }]
+      }],
     },
     signUp: {
       email: '',
@@ -46,7 +47,8 @@ let app = new Vue({
     login: {
       email: "",
       password: ''
-    }
+    },
+    shareLink:'不晓得'
   },
   methods: {
     onEdit(key, value) {
@@ -158,5 +160,6 @@ let app = new Vue({
 let currentUser = AV.User.current()
 if (currentUser) {
   app.currentUser = currentUser.toJSON()
+  app.shareLink = location.origin + location.pathname + '?user_id' + app.currentUser.objectId
   app.getresume()
 }
