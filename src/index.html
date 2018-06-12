@@ -63,61 +63,38 @@
               <button v-if="index>=4" @click="delateSkill(index)">X</button>
             </li>
             <li>
-              <button @click="addSkill">添加</button>
-              <button @click="delateSkill">删除</button>
+              <button @click="addSkill">添加技能</button>
+              <button @click="delateSkill">删除上一个</button>
             </li>
           </ul>
         </section>
         <section class="projects">
           <h2>项目经历</h2>
           <ol>
-            <li>
+            <li v-for="project,index in resume.projects">
               <header>
                 <div class="start">
-                  <h3 class="name">项目1</h3>
-                  <span class="link">http://xxx/xxx</span>
+                  <h3 class="name">
+                    <editable-span :value="project.name" @edit="onEdit(`projects[${index}].name`, $event)"></editable-span>
+                  </h3>
+                  <span class="link">
+                    <editable-span :value="project.link" @edit="onEdit(`projects[${index}].link` , $event)"></editable-span>
+                  </span>
                 </div>
                 <div class="end">
-                  <li class="keywords">jQuery、CSS3、响应式</li>
+                  <li class="keywords">
+                    <editable-span :value="project.keywords" @edit="onEdit(`projects[${index}].keywords` , $event)"></editable-span>
+                  </li>
                 </div>
               </header>
-              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+              <p class="description">
+                <editable-span :value="project.description" @edit="onEdit(`projects[${index}].description`, $event)"></editable-span>
+              </p>
+              <button v-if="index>=2" @click="delateProject">删除</button>
             </li>
             <li>
-              <header>
-                <div class="start">
-                  <h3 class="name">项目1</h3>
-                  <span class="link">http://xxx/xxx</span>
-                </div>
-                <div class="end">
-                  <li class="keywords">jQuery、CSS3、响应式</li>
-                </div>
-              </header>
-              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
-            </li>
-            <li>
-              <header>
-                <div class="start">
-                  <h3 class="name">项目1</h3>
-                  <span class="link">http://xxx/xxx</span>
-                </div>
-                <div class="end">
-                  <li class="keywords">jQuery、CSS3、响应式</li>
-                </div>
-              </header>
-              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
-            </li>
-            <li>
-              <header>
-                <div class="start">
-                  <h3 class="name">项目1</h3>
-                  <span class="link">http://xxx/xxx</span>
-                </div>
-                <div class="end">
-                  <li class="keywords">jQuery、CSS3、响应式</li>
-                </div>
-              </header>
-              <p class="description">我是一个前端程序员我是一个前端程序员我是我是一个前端程序员我是一个前端程序员我是一个前端程序员我是一个前端程序员一个前端程序员我是一个前端程序员</p>
+              <button @click="addProject">添加项目</button>
+              <button @click="delateProject">删除项目</button>
             </li>
           </ol>
 

@@ -31,7 +31,13 @@ let app = new Vue({
           name: '请填写技能名称',
           description: '请填写技能描述'
         },
-      ]
+      ],
+      projects:[{
+        name:'请填写项目名称',
+        link:'http://xxx',
+        keywords:'请填写技术栈',
+        description:'请详细描述你的项目'
+      }]
     },
     signUp: {
       email: '',
@@ -47,8 +53,7 @@ let app = new Vue({
       let regex = reg = /\[(\d+)\]/g
       key = key.replace(regex, (match, number) => `.${number}`)
       keys = key.split('.')
-      let result = this.resume
-      console.log(result)
+      let result = this.resume  
       for (let i = 0; i < keys.length; i++) {
         if (i === keys.length - 1) {
           result[keys[i]] = value
@@ -74,6 +79,17 @@ let app = new Vue({
     },
     delateSkill(index){
       this.resume.skills.splice(index,1)  //splice，VUE的api，可以删除一个数组
+    },
+    addProject(){
+      this.resume.projects.push({
+        name:'请填写项目名称',
+        link:'http://xxx',
+        keywords:'请填写技术栈',
+        description:'请详细描述你的项目'
+      })
+    },
+    delateProject(index){
+      this.resume.projects.splice(index,1)
     },
     hasLogin() {
       return !!this.currentUser.objectId
