@@ -55,21 +55,16 @@
         <section class="skills">
           <h2>技能</h2>
           <ul>
-            <li>
-              <span class="name">静态页面制作</span>
-              <div class="description">完美实现设计稿</div>
+            <li v-for="skill,index in resume.skills">
+              <editable-span class="name" :value="skill.name" @edit="onEdit(`skills[${index}].name`,$event)"></editable-span>
+              <div class="description">
+                <editable-span :value="skill.description" @edit="onEdit(`skills[${index}].description`,$event)"></editable-span>
+              </div>
+              <button v-if="index>=4" @click="delateSkill(index)">X</button>
             </li>
             <li>
-              <span class="name">静态页面制作</span>
-              <div class="description">完美实现设计稿</div>
-            </li>
-            <li>
-              <span class="name">静态页面制作</span>
-              <div class="description">完美实现设计稿</div>
-            </li>
-            <li>
-              <span class="name">静态页面制作</span>
-              <div class="description">完美实现设计稿</div>
+              <button @click="addSkill">添加</button>
+              <button @click="delateSkill">删除</button>
             </li>
           </ul>
         </section>
@@ -148,24 +143,26 @@
         </div>
       </form>
     </div>
-    <div v-show="signUpVisible" class="signUp" v-cloak>   
-        <form class="form" @submit.prevent="onSignUp"> <!-- .prevent 事件修饰符 -->
-          <h2>注册</h2>
-          <button type="button" @click="signUpVisible = false">退出</button> <!-- 不加type会出现aleat内容-->
-          <div class="row">
-            <label>注册邮箱</label>
-            <input type="text" v-model="signUp.email">
-          </div>
-          <div class="row">
-            <label>密码</label>
-            <input type="password" v-model="signUp.password">
-          </div>
-          <div class="actions">
-            <button type="submit">提交</button>
-            <a @click="loginVisible = true;signUpVisible = false" href="#">登录</a>
-          </div>
-        </form>
-      </div>
+    <div v-show="signUpVisible" class="signUp" v-cloak>
+      <form class="form" @submit.prevent="onSignUp">
+        <!-- .prevent 事件修饰符 -->
+        <h2>注册</h2>
+        <button type="button" @click="signUpVisible = false">退出</button>
+        <!-- 不加type会出现aleat内容-->
+        <div class="row">
+          <label>注册邮箱</label>
+          <input type="text" v-model="signUp.email">
+        </div>
+        <div class="row">
+          <label>密码</label>
+          <input type="password" v-model="signUp.password">
+        </div>
+        <div class="actions">
+          <button type="submit">提交</button>
+          <a @click="loginVisible = true;signUpVisible = false" href="#">登录</a>
+        </div>
+      </form>
+    </div>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>

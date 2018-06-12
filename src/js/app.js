@@ -15,6 +15,23 @@ let app = new Vue({
       gender: '男',
       emal: 'from-wh@hotmail.com',
       phone: '1234556789',
+      skills: [{
+          name: '请填写技能名称',
+          description: '请填写技能描述'
+        },
+        {
+          name: '请填写技能名称',
+          description: '请填写技能描述'
+        },
+        {
+          name: '请填写技能名称',
+          description: '请填写技能描述'
+        },
+        {
+          name: '请填写技能名称',
+          description: '请填写技能描述'
+        },
+      ]
     },
     signUp: {
       email: '',
@@ -27,16 +44,36 @@ let app = new Vue({
   },
   methods: {
     onEdit(key, value) {
-      this.resume[key] = value  //console.log(this === app)
+      let regex = reg = /\[(\d+)\]/g
+      key = key.replace(regex, (match, number) => `.${number}`)
+      keys = key.split('.')
+      let result = this.resume
+      console.log(result)
+      for (let i = 0; i < keys.length; i++) {
+        if (i === keys.length - 1) {
+          result[keys[i]] = value
+        } else {
+          result = result[keys[i]]
+        }
+      }
     },
-    getresume(){
+    getresume() {
       var query = new AV.Query('User');
-      query.get(this.currentUser.objectId).then((user)=> {
-        let resume = user.toJSON().resume  
-        this.resume = resume
-      },  (error)=> {
+      query.get(this.currentUser.objectId).then((user) => {
+        let resume = user.toJSON().resume
+        Object.assign(this.resume, resume)
+      }, (error) => {
         // 异常处理
       });
+    },
+    addSkill() {
+      this.resume.skills.push({
+        name: '请填写技能名称',
+        description: '请填写技能描述'
+      })
+    },
+    delateSkill(index){
+      this.resume.skills.splice(index,1)  //splice，VUE的api，可以删除一个数组
     },
     hasLogin() {
       return !!this.currentUser.objectId
@@ -78,13 +115,14 @@ let app = new Vue({
       let currentUser = AV.User.current();
       if (!currentUser) {
         this.loginVisible = true
-      }
-      else {
+      } else {
         this.saveResume()
       }
     },
-    saveResume(){
-      let {objectId} = AV.User.current().toJSON()
+    saveResume() {
+      let {
+        objectId
+      } = AV.User.current().toJSON()
       let user = AV.Object.createWithoutData('User', objectId)
       user.set('resume', this.resume)
       user.save().then(() => {
