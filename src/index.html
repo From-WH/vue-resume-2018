@@ -30,7 +30,7 @@
         </ul>
       </div>
       <div class="down">
-        <button class="button" @click="onLogOut">注销</button>
+        <button class="button" @click="onLogOut" v-show="hasLogin()">注销</button>
       </div>
     </aside>
     <main>
