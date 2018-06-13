@@ -2,6 +2,7 @@
     * {
       margin: 0;
       padding: 0;
+      transition: all 0.5s;
     }
 
     *,
@@ -13,8 +14,37 @@
     body{
       font-size: 18px;
     }
-    button{
+    .buttonTop{
       font-size: inherit;
+      background-color: rgb(158, 158, 233);
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      padding: 15px
+    }
+    .buttonTop:hover{
+      font-size: inherit;
+      background-color: rgb(80, 80, 223);
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      padding: 15px
+    }
+    .buttonDown{
+      font-size: inherit;
+      background-color: rgb(158, 158, 233);
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      padding: 15px
+    }
+    .buttonDown:hover{
+      font-size: inherit;
+      background-color: rgb(158, 158, 233);
+      border: none;
+      border-radius: 5px;
+      margin-top: 30px;
+      padding: 15px
     }
 
     a {
@@ -81,3 +111,23 @@
     .resume .projects header{display: flex; margin-bottom: 10px; align-items: center; justify-content: space-between;}
     .resume .projects .start{ display: flex;}
     .resume .projects>ol>li{margin: 20px 0; padding: 10px;border:1px solid #ddd; }
+    .exitPreview{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 150px;
+      height: 35px;
+      background-color: rgb(158, 158, 233);
+      border: none;
+      border-radius: 5px;
+    }
+    .exitPreview:hover{
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 150px;
+      height: 35px;
+      background-color: rgb(80, 80, 223);
+      border: none;
+      border-radius: 5px;
+    }

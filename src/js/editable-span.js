@@ -1,10 +1,10 @@
 Vue.component('editable-span', {
-  props: ['value'],
+  props: ['value','disabled'],
   template: `
   <span class="editableSpan">      
     <span v-show="!editting">{{value}}</span>
     <input v-show="editting" type="text" v-bind:value="value" v-on:input="triggerEdit">   
-    <button v-on:click="editting = !editting">编辑</button>
+    <button v-if="!disabled" v-on:click="editting = !editting">编辑</button>
   </span>
   `,
   //input的值就是父集传的value   v-bind:value="value"

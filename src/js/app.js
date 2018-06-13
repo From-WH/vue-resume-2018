@@ -4,16 +4,20 @@ let app = new Vue({
     editting: false,
     loginVisible: false,
     signUpVisible: false,
-    shareVisible:false,
+    shareVisible: false,
     currentUser: {
       objectId: undefined,
       email: '',
     },
+    previewUser: {
+      objectId: undefined,
+    },
+    previewResume: {},
     resume: {
-      name: '王航',
+      name: '你好',
       jobTitle: '前端开发工程师',
       birthday: '1992年10月',
-      gender: '男',
+      gender: '女',
       emal: 'from-wh@hotmail.com',
       phone: '1234556789',
       skills: [{
@@ -33,11 +37,11 @@ let app = new Vue({
           description: '请填写技能描述'
         },
       ],
-      projects:[{
-        name:'请填写项目名称',
-        link:'http://xxx',
-        keywords:'请填写技术栈',
-        description:'请详细描述你的项目'
+      projects: [{
+        name: '请填写项目名称',
+        link: 'http://xxx',
+        keywords: '请填写技术栈',
+        description: '请详细描述你的项目'
       }],
     },
     signUp: {
@@ -48,14 +52,27 @@ let app = new Vue({
       email: "",
       password: ''
     },
-    shareLink:'不晓得'
+    shareLink: '不晓得',
+    mode: 'edit' // 'preview'
+  },
+  computed: {
+    displayResume(){
+      return this.mode === 'preview' ? this.previewResume : this.resume
+    }
+  },
+  watch: {
+    'currentUser.objectId': function (newValue, oldValue) {
+      if (newValue) {
+        this.getResume(this.currentUser)
+      }
+    }
   },
   methods: {
     onEdit(key, value) {
       let regex = reg = /\[(\d+)\]/g
       key = key.replace(regex, (match, number) => `.${number}`)
       keys = key.split('.')
-      let result = this.resume  
+      let result = this.resume
       for (let i = 0; i < keys.length; i++) {
         if (i === keys.length - 1) {
           result[keys[i]] = value
@@ -64,11 +81,11 @@ let app = new Vue({
         }
       }
     },
-    getresume() {
+    getResume(user) {
       var query = new AV.Query('User');
-      query.get(this.currentUser.objectId).then((user) => {
+      return query.get(user.objectId).then((user) => {
         let resume = user.toJSON().resume
-        Object.assign(this.resume, resume)
+        return resume
       }, (error) => {
         // 异常处理
       });
@@ -79,19 +96,19 @@ let app = new Vue({
         description: '请填写技能描述'
       })
     },
-    delateSkill(index){
-      this.resume.skills.splice(index,1)  //splice，VUE的api，可以删除一个数组
+    delateSkill(index) {
+      this.resume.skills.splice(index, 1) //splice，VUE的api，可以删除一个数组
     },
-    addProject(){
+    addProject() {
       this.resume.projects.push({
-        name:'请填写项目名称',
-        link:'http://xxx',
-        keywords:'请填写技术栈',
-        description:'请详细描述你的项目'
+        name: '请填写项目名称',
+        link: 'http://xxx',
+        keywords: '请填写技术栈',
+        description: '请详细描述你的项目'
       })
     },
-    delateProject(index){
-      this.resume.projects.splice(index,1)
+    delateProject(index) {
+      this.resume.projects.splice(index, 1)
     },
     hasLogin() {
       return !!this.currentUser.objectId
@@ -108,7 +125,6 @@ let app = new Vue({
         user = user.toJSON()
         this.currentUser.objectId = user.objectId
         this.currentUser.email = user.email
-        this.loginVisible = false
         this.signUpVisible = false
         alert('注册成功，开始编辑你的简历吧')
       }, function (error) {
@@ -154,12 +170,36 @@ let app = new Vue({
       alert('注销成功')
       window.location.reload()
     },
+    print(){
+      window.print()
+    }
   }
 })
 
+
+// 获取当前用户
 let currentUser = AV.User.current()
 if (currentUser) {
   app.currentUser = currentUser.toJSON()
-  app.shareLink = location.origin + location.pathname + '?user_id' + app.currentUser.objectId
-  app.getresume()
+  app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
+  app.getResume(app.currentUser).then(resume => {
+    app.resume = resume
+  })
+}
+
+
+// 获取预览用户的 id
+let search = location.search
+let regex = /user_id=([^&]+)/
+let matches = search.match(regex)
+let userId
+if (matches) {
+  userId = matches[1]
+  console.log(userId)
+  app.mode = 'preview'
+  app.getResume({
+    objectId: userId
+  }).then(resume => {
+    app.previewResume = resume
+  })
 }
