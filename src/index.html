@@ -5,14 +5,18 @@
   <meta charset="UTF-8">
   <title>简历制作工具</title>
   <link rel="stylesheet" href="./css/index.css">
+  <link rel="stylesheet" href="./css/themes/default.css">
+  <link rel="stylesheet" href="./css/themes/dark.css">
+  <link rel="stylesheet" href="./css/themes/white.css">
   <link rel="stylesheet" href="./css/editable-span.css">
   <link rel="stylesheet" href="./css/login.css">
   <link rel="stylesheet" href="./css/signup.css">
   <link rel="stylesheet" href="./css/share.css">
+  <link rel="stylesheet" href="./css/skinPicker.css">
   <link rel="stylesheet" href="./css/print.css" media="print">
 </head>
 
-<body>
+<body class="default">
   <div class="page" id="page">
     <aside v-show="mode === 'edit'">
       <div class="upper">
@@ -21,10 +25,10 @@
             <button class="buttonTop" v-on:click="onClickSave">保存</button>
           </li>
           <li>
-            <button class="buttonTop" @click="shareVisible = true">分享</button>
+            <button class="buttonTop" @click="shareVisible = !shareVisible">分享</button>
           </li>
           <li>
-            <button class="buttonTop">换肤</button>
+            <button class="buttonTop" @click="skinPickerVisible = !skinPickerVisible">换肤</button>
           </li>
           <li>
             <button class="buttonTop" @click="print">打印</button>
@@ -57,12 +61,12 @@
         <section class="skills">
           <h2>技能</h2>
           <ul>
-            <li v-for="skill,index in displayResume.skills">
+            <li class="skillSet" v-for="skill,index in displayResume.skills">
               <editable-span class="name" :disabled="mode ==='preview'" :value="skill.name" @edit="onEdit(`skills[${index}].name`,$event)"></editable-span>
               <div class="description">
                 <editable-span :disabled="mode ==='preview'" :value="skill.description" @edit="onEdit(`skills[${index}].description`,$event)"></editable-span>
               </div>
-              <span class="remove" v-if="index>=4 && mode==='edit'" @click="delateSkill(index)">X</span>
+              <button id="remove" class="remove" v-if="index>=4 && mode==='edit'" @click="delateSkill(index)">X</button>
             </li>
             <li class="addAndRemove" v-if="mode==='edit'">
               <button @click="addSkill">添加技能</button>
@@ -96,7 +100,7 @@
             </li>
             <li class="addAndRemove" v-if="mode==='edit'">
               <button class="add" @click="addProject">添加项目</button>
-              <button class="remove" @click="delateProject">删除项目</button>
+              <button class="removeTwo" @click="delateProject">删除项目</button>
             </li>
           </ol>
         </section>
@@ -141,11 +145,22 @@
         </div>
       </form>
     </div>
-    <div class="share" v-show="shareVisible" v-cloak>
+    <div v-show="shareVisible" class="share" v-cloak>
       <h3>分享链接</h3>
       <textarea readonly :value="shareLink"></textarea>
     </div>
     <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
+    <div v-show="skinPickerVisible" class="skinPicker" v-cloak>
+      <button @click="setTheme('default')">
+        默认皮肤
+      </button>
+      <button @click="setTheme('dark')">
+        奢华暗黑
+      </button>
+      <button @click="setTheme('white')">
+        至尊商务
+      </button>
+    </div>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>
