@@ -107,60 +107,11 @@
       </div>
     </main>
 
-    <div v-show="loginVisible" class="login" v-cloak>
-      <form @submit.prevent="onLogin" class="form">
-        <h2>登录</h2>
-        <button type="button" @click="loginVisible = false">退出</button>
-        <div class="row">
-          <label>邮箱</label>
-          <input type="text" v-model="login.email">
-        </div>
-        <div class="row">
-          <label>密码</label>
-          <input type="password" v-model="login.password">
-        </div>
-        <div class="actions">
-          <button type="submit">确定</button>
-          <a @click="signUpVisible = true;loginVisible = false" href="#">注册</a>
-        </div>
-      </form>
-    </div>
-    <div v-show="signUpVisible" class="signUp" v-cloak>
-      <form class="form" @submit.prevent="onSignUp">
-        <!-- .prevent 事件修饰符 -->
-        <h2>注册</h2>
-        <button type="button" @click="signUpVisible = false">退出</button>
-        <!-- 不加type会出现aleat内容-->
-        <div class="row">
-          <label>注册邮箱</label>
-          <input type="text" v-model="signUp.email">
-        </div>
-        <div class="row">
-          <label>密码</label>
-          <input type="password" v-model="signUp.password">
-        </div>
-        <div class="actions">
-          <button type="submit">提交</button>
-          <a @click="loginVisible = true; signUpVisible = false" href="#">登录</a>
-        </div>
-      </form>
-    </div>
-    <div v-show="shareVisible" class="share" v-cloak>
-      <h3>分享链接</h3>
-      <textarea readonly :value="shareLink"></textarea>
-    </div>
+    <login></login>
+    <sigup></sigup>
+    <share></share>
     <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
-    <div v-show="skinPickerVisible" class="skinPicker" v-cloak>
-      <button @click="setTheme('default')">
-        默认皮肤
-      </button>
-      <button @click="setTheme('dark')">
-        奢华暗黑
-      </button>
-      <button @click="setTheme('white')">
-        至尊商务
-      </button>
-    </div>
+    <skinpicker></skinpicker>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>
