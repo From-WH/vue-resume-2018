@@ -25,7 +25,7 @@
             <button class="buttonTop" v-on:click="onClickSave">保存</button>
           </li>
           <li>
-            <button class="buttonTop" @click="shareVisible = !shareVisible">分享</button>
+            <button class="buttonTop" @click="onShare">分享</button>
           </li>
           <li>
             <button class="buttonTop" @click="skinPickerVisible = !skinPickerVisible">换肤</button>
@@ -107,16 +107,20 @@
       </div>
     </main>
 
-    <login></login>
-    <sigup></sigup>
-    <share></share>
+    <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin"></login>
+    <sigup v-show="signUpVisible"></sigup>
+    <share :sharelink="shareLink" v-show="shareVisible"></share>
     <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
-    <skinpicker></skinpicker>
+    <skinpicker v-show="skinPickerVisible"></skinpicker>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>
   <script src="../vendors/vue.min.js"></script>
   <script src="./js/editable-span.js"></script>
+  <script src="./js/login.js"></script>
+  <script src="./js/singup.js"></script>
+  <script src="./js/share.js"></script>
+  <script src="./js/skinpicker.js"></script>
   <script src="./js/app.js"></script>
 </body>
 

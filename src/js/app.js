@@ -5,7 +5,7 @@ let app = new Vue({
     loginVisible: false,
     signUpVisible: false,
     shareVisible: false,
-    skinPickerVisible:false,
+    skinPickerVisible: false,
     currentUser: {
       objectId: undefined,
       email: '',
@@ -45,30 +45,35 @@ let app = new Vue({
         description: '请详细描述你的项目'
       }],
     },
-    signUp: {
-      email: '',
-      password: ''
-    },
-    login: {
-      email: "",
-      password: ''
-    },
     shareLink: '不晓得',
     mode: 'edit' // 'preview'
   },
   computed: {
-    displayResume(){
+    displayResume() {
       return this.mode === 'preview' ? this.previewResume : this.resume
     }
   },
   watch: {
     'currentUser.objectId': function (newValue, oldValue) {
       if (newValue) {
-        this.getResume(this.currentUser)
+        this.getResume(this.currentUser).then((resume) => this.resume = resume)
       }
     }
   },
   methods: {
+    onShare() {
+      if (this.hasLogin()) {
+        this.shareVisible = true
+      } else {
+        alert('请先登录～')
+      }
+    },
+    onLogin(user) {
+      this.currentUser.id = user.id
+      this.currentUser.email = user.email
+      this.loginVisible = false
+      window.location.reload()
+    },
     onEdit(key, value) {
       let regex = reg = /\[(\d+)\]/g
       key = key.replace(regex, (match, number) => `.${number}`)
@@ -114,38 +119,8 @@ let app = new Vue({
     hasLogin() {
       return !!this.currentUser.objectId
     },
-    onSignUp(e) {
-      const user = new AV.User();
-      // 设置用户名
-      user.setUsername(this.signUp.email);
-      // 设置密码
-      user.setPassword(this.signUp.password);
-      // 设置邮箱
-      user.setEmail(this.signUp.email);
-      user.signUp().then((user) => {
-        user = user.toJSON()
-        this.currentUser.objectId = user.objectId
-        this.currentUser.email = user.email
-        this.signUpVisible = false
-        alert('注册成功，开始编辑你的简历吧')
-      }, function (error) {
-        alert('注册失败！')
-      });
-    },
-    onLogin(e) {
-      AV.User.logIn(this.login.email, this.login.password).then((user) => {
-        user = user.toJSON()
-        this.currentUser.objectId = user.objectId
-        this.currentUser.email = user.email
-        this.loginVisible = false
-      }, (error) => {
-        if (error.code === 211) {
-          alert('还没有注册喔～快去注册吧')
-        } else if (error.code === 210) {
-          alert('邮箱和密码不匹配喔')
-        }
-      });
-    },
+
+
     onClickSave() {
       let currentUser = AV.User.current();
       if (!currentUser) {
@@ -171,12 +146,10 @@ let app = new Vue({
       alert('注销成功')
       window.location.reload()
     },
-    print(){
+    print() {
       window.print()
     },
-    setTheme(name){
-      document.body.className = name
-    }
+
   }
 })
 
