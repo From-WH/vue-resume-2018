@@ -1,0 +1,28 @@
+body.default .resume{
+  max-width: 800px;
+  margin: 0 auto;
+}
+body.default .resume > section{
+  margin: 60px 0;
+}
+body.default .resume > section{ text-align: center;}
+body.default .resume > section > span >span > h1{ text-align: center;}
+body.default .resume > section > p{ text-align: center; margin-top: 15px;}
+body.default .resume > section > h2{ text-align: center;}
+body.default .resume .profile{ text-align: center;margin-top: 16px;}
+body.default .resume .skills > ul{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+body.default .resume .skills > ul > li{
+  width: 48%; border: 1px solid #ddd; margin-top: 15px; padding: 10px;
+}
+body.default .resume .projects  h3 {margin-right: 1em;}
+body.default .resume .projects header{display: flex; margin-bottom: 10px; align-items: center; justify-content: space-between;}
+body.default .resume .projects .start{ display: flex;}
+body.default .resume .projects>ol>li{margin: 20px 0; padding: 10px;border:1px solid #ddd; }
+.skills > ul > li {position: relative;}
+.skills > ul > li .remove {position: absolute; top: 0; right: 0;}
+.projects > ol > li {position: relative;}
+.projects > ol > li .remove {position: absolute; bottom: 0; right: 0;}
