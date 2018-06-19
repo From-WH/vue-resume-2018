@@ -96,26 +96,7 @@ let app = new Vue({
         // 异常处理
       });
     },
-    addSkill() {
-      this.resume.skills.push({
-        name: '请填写技能名称',
-        description: '请填写技能描述'
-      })
-    },
-    delateSkill(index) {
-      this.resume.skills.splice(index, 1) //splice，VUE的api，可以删除一个数组
-    },
-    addProject() {
-      this.resume.projects.push({
-        name: '请填写项目名称',
-        link: 'http://xxx',
-        keywords: '请填写技术栈',
-        description: '请详细描述你的项目'
-      })
-    },
-    delateProject(index) {
-      this.resume.projects.splice(index, 1)
-    },
+    
     hasLogin() {
       return !!this.currentUser.objectId
     },
