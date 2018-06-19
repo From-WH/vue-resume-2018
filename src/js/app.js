@@ -1,63 +1,61 @@
-let app = new Vue({
-  el: '#page',
-  data: {
-    editting: false,
-    loginVisible: false,
-    signUpVisible: false,
-    shareVisible: false,
-    skinPickerVisible: false,
-    currentUser: {
-      objectId: undefined,
-      email: '',
-    },
-    previewUser: {
-      objectId: undefined,
-    },
-    previewResume: {},
-    resume: {
-      name: '你好',
-      jobTitle: '前端开发工程师',
-      birthday: '1992年10月',
-      gender: '女',
-      emal: 'from-wh@hotmail.com',
-      phone: '1234556789',
-      skills: [{
-          name: '请填写技能名称',
-          description: '请填写技能描述'
-        },
-        {
-          name: '请填写技能名称',
-          description: '请填写技能描述'
-        },
-        {
-          name: '请填写技能名称',
-          description: '请填写技能描述'
-        },
-        {
-          name: '请填写技能名称',
-          description: '请填写技能描述'
-        },
-      ],
-      projects: [{
-        name: '请填写项目名称',
-        link: 'http://xxx',
-        keywords: '请填写技术栈',
-        description: '请详细描述你的项目'
-      }],
-    },
-    shareLink: '不晓得',
-    mode: 'edit' // 'preview'
-  },
-  computed: {
-    displayResume() {
-      return this.mode === 'preview' ? this.previewResume : this.resume
-    }
-  },
-  watch: {
-    'currentUser.objectId': function (newValue, oldValue) {
-      if (newValue) {
-        this.getResume(this.currentUser).then((resume) => this.resume = resume)
-      }
+window.App = {
+  template: `
+  <div>
+    <app-aside v-show="mode === 'edit'" :logout-visible="true"  @logout="onLogOut" @save="onClickSave"></app-aside>
+    <main>
+      <resume :mode="mode" :display-resume="displayResume"></resume>
+    </main>
+    <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
+  </div>
+  `,
+  data() {
+    return {
+      editting: false,
+      loginVisible: false,
+      signUpVisible: false,
+      shareVisible: false,
+      skinPickerVisible: false,
+      currentUser: {
+        objectId: undefined,
+        email: '',
+      },
+      previewUser: {
+        objectId: undefined,
+      },
+      previewResume: {},
+      resume: {
+        name: '你好',
+        jobTitle: '前端开发工程师',
+        birthday: '1992年10月',
+        gender: '女',
+        emal: 'from-wh@hotmail.com',
+        phone: '1234556789',
+        skills: [{
+            name: '请填写技能名称',
+            description: '请填写技能描述'
+          },
+          {
+            name: '请填写技能名称',
+            description: '请填写技能描述'
+          },
+          {
+            name: '请填写技能名称',
+            description: '请填写技能描述'
+          },
+          {
+            name: '请填写技能名称',
+            description: '请填写技能描述'
+          },
+        ],
+        projects: [{
+          name: '请填写项目名称',
+          link: 'http://xxx',
+          keywords: '请填写技术栈',
+          description: '请详细描述你的项目'
+        }],
+      },
+      shareLink: '不晓得',
+      mode: 'edit' // 'preview'
     }
   },
   methods: {
@@ -96,7 +94,7 @@ let app = new Vue({
         // 异常处理
       });
     },
-    
+
     hasLogin() {
       return !!this.currentUser.objectId
     },
@@ -105,7 +103,7 @@ let app = new Vue({
     onClickSave() {
       let currentUser = AV.User.current();
       if (!currentUser) {
-        this.loginVisible = true
+        this.$router.push('./login')
       } else {
         this.saveResume()
       }
@@ -131,33 +129,11 @@ let app = new Vue({
       window.print()
     },
 
-  }
-})
-
-
-// 获取当前用户
-let currentUser = AV.User.current()
-if (currentUser) {
-  app.currentUser = currentUser.toJSON()
-  app.shareLink = location.origin + location.pathname + '?user_id=' + app.currentUser.objectId
-  app.getResume(app.currentUser).then(resume => {
-    app.resume = resume
-  })
+  },
+  computed: {
+    displayResume() {
+      return this.mode === 'preview' ? this.previewResume : this.resume
+    }
+  },
 }
-
-
-// 获取预览用户的 id
-let search = location.search
-let regex = /user_id=([^&]+)/
-let matches = search.match(regex)
-let userId
-if (matches) {
-  userId = matches[1]
-  console.log(userId)
-  app.mode = 'preview'
-  app.getResume({
-    objectId: userId
-  }).then(resume => {
-    app.previewResume = resume
-  })
-}
+Vue.component('app', App)

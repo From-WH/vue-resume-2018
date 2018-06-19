@@ -17,17 +17,13 @@
 </head>
 
 <body class="default">
-  <div class="page" id="page">
-    <app-aside v-show="mode === 'edit'" :logout-visible="true"  @logout="onLogOut" @save="onClickSave"></app-aside>
-    <main>
-      <resume :mode="mode" :display-resume="displayResume"></resume>
-    </main>
+  <div class="page" id="root">
+    <router-view></router-view>
 
-    <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin"></login>
+    <!-- <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin"></login>
     <sigup v-show="signUpVisible"></sigup>
     <share :sharelink="shareLink" v-show="shareVisible"></share>
-    <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
-    <skinpicker v-show="skinPickerVisible"></skinpicker>
+    <skinpicker v-show="skinPickerVisible"></skinpicker> -->
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>
@@ -41,6 +37,7 @@
   <script src="./js/resume.js"></script>
   <script src="./js/app-aside.js"></script>
   <script src="./js/app.js"></script>
+  <script src="./js/root.js"></script>
 </body>
 
 </html>

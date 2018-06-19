@@ -1,4 +1,4 @@
-Vue.component('signup',{
+window.SignUp={
   data(){
     return{
       signUp: {
@@ -33,7 +33,7 @@ Vue.component('signup',{
     <form class="form" @submit.prevent="onSignUp">
       <!-- .prevent 事件修饰符 -->
       <h2>注册</h2>
-      <button type="button" @click="signUpVisible = false">退出</button>
+      <router-link to="/">关闭</router-link>
       <!-- 不加type会出现aleat内容-->
       <div class="row">
         <label>注册邮箱</label>
@@ -45,9 +45,10 @@ Vue.component('signup',{
       </div>
       <div class="actions">
         <button type="submit">提交</button>
-        <a @click="onClickLogin" href="#">登录</a>
+        <router-link to="/login">登录</router-link>
       </div>
     </form>
   </div>
   `
-})
+}
+Vue.component('signup',window.signUp)
