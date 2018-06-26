@@ -67,8 +67,11 @@
         display: flex;
       }
     }
-
-    .page > aside {
+    .page > div{
+      display: flex;
+      justify-content: space-between;
+    }
+    .page aside {
       border: 1px solid #ddd;
       width: 100px;
       display: flex;
@@ -77,11 +80,13 @@
       text-align: center;
       flex-shrink: 0;
     }
-    .page > aside >.upper{
+    .page aside >.upper{
       display: flex;
       flex-direction: column;
     }
-    .page > main {
+    .page main {
+      width: 100vw;
+      padding-right: 100px;
       border: 1px solid #ddd;
       flex-grow: 1;
       overflow: auto;

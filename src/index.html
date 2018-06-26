@@ -18,12 +18,12 @@
 
 <body class="default">
   <div class="page" id="root">
-    <router-view></router-view>
+    <router-view :logoutvisible="logoutVisible" @skin="$emit('skin')"  :displayresume="displayResume" :mode="mode" @login="onLogin" :resume="resume" @signup="onSignUp" @save="onClickSave"  @logout="onLogOut"></router-view>
 
     <!-- <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin"></login>
-    <sigup v-show="signUpVisible"></sigup>
+    <sigup v-show="signUpVisible"></sigup> -->
     <share :sharelink="shareLink" v-show="shareVisible"></share>
-    <skinpicker v-show="skinPickerVisible"></skinpicker> -->
+    <skinpicker v-show="skinPickerVisible" @skin="changeSkin"></skinpicker>
   </div>
   <script src="../vendors/av-min.js"></script>
   <script src="./js/av.js"></script>

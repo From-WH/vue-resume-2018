@@ -1,8 +1,9 @@
 window.App = {
+  props: ['displayresume', 'mode', 'resume', 'logoutvisible'],
   template: `
   <div>
-    <app-aside v-show="mode === 'edit'" :logout-visible="true"  @logout="onLogOut" @save="onClickSave"></app-aside>
-    <main>
+    <app-aside v-show="mode === 'edit'" :logoutvisible="true"  @logout="onLogOut" @save="onClickSave" @share="onShare" @print="print" @skin="changeSkin"></app-aside>
+    <main id="main">
       <resume :mode="mode" :display-resume="displayResume"></resume>
     </main>
     <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
@@ -12,6 +13,7 @@ window.App = {
     return {
       editting: false,
       loginVisible: false,
+      logoutvisible: false,
       signUpVisible: false,
       shareVisible: false,
       skinPickerVisible: false,
@@ -23,45 +25,22 @@ window.App = {
         objectId: undefined,
       },
       previewResume: {},
-      resume: {
-        name: '你好',
-        jobTitle: '前端开发工程师',
-        birthday: '1992年10月',
-        gender: '女',
-        emal: 'from-wh@hotmail.com',
-        phone: '1234556789',
-        skills: [{
-            name: '请填写技能名称',
-            description: '请填写技能描述'
-          },
-          {
-            name: '请填写技能名称',
-            description: '请填写技能描述'
-          },
-          {
-            name: '请填写技能名称',
-            description: '请填写技能描述'
-          },
-          {
-            name: '请填写技能名称',
-            description: '请填写技能描述'
-          },
-        ],
-        projects: [{
-          name: '请填写项目名称',
-          link: 'http://xxx',
-          keywords: '请填写技术栈',
-          description: '请详细描述你的项目'
-        }],
-      },
       shareLink: '不晓得',
       mode: 'edit' // 'preview'
     }
   },
   methods: {
+    hasLogin() {
+      return !!root.currentUser.objectId
+      console.log(this.currentUser.objectId);
+      
+    },
+    changeSkin() {
+        root.skinPickerVisible = true
+    },
     onShare() {
-      if (this.hasLogin()) {
-        this.shareVisible = true
+      if (root.hasLogin()) {
+        root.shareVisible = true
       } else {
         alert('请先登录～')
       }
@@ -94,12 +73,6 @@ window.App = {
         // 异常处理
       });
     },
-
-    hasLogin() {
-      return !!this.currentUser.objectId
-    },
-
-
     onClickSave() {
       let currentUser = AV.User.current();
       if (!currentUser) {
@@ -128,7 +101,6 @@ window.App = {
     print() {
       window.print()
     },
-
   },
   computed: {
     displayResume() {

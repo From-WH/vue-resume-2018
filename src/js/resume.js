@@ -1,22 +1,21 @@
-Vue.component('resume',{
-  props:['mode','displayResume'],
-  data(){
-    return{
-
-    }
+Vue.component('resume', {
+  props: ['mode', 'displayResume', 'resume'],
+  data() {
+    return {}
   },
-  methods:{
+  methods: {
     addSkill() {
-      this.resume.skills.push({
+      console.log(root.resume);
+      root.resume.skills.push({
         name: '请填写技能名称',
         description: '请填写技能描述'
       })
     },
     delateSkill(index) {
-      this.resume.skills.splice(index, 1) //splice，VUE的api，可以删除一个数组
+      root.resume.skills.splice(index, 1) //splice，VUE的api，可以删除一个数组
     },
     addProject() {
-      this.resume.projects.push({
+      root.resume.projects.push({
         name: '请填写项目名称',
         link: 'http://xxx',
         keywords: '请填写技术栈',
@@ -24,10 +23,30 @@ Vue.component('resume',{
       })
     },
     delateProject(index) {
-      this.resume.projects.splice(index, 1)
+      root.resume.projects.splice(index, 1)
+    },
+    onEdit(key, value) {
+      // this.resume[key] = value;
+      let regex = /\[(\d+)\]/g
+      key = key.replace(regex, (match, number) => `.${number}`)
+      let keys = key.split('.');
+      let result = root.resume;
+      for (let i = 0; i < keys.length; i++) {
+        if (i === keys.length - 1) {
+          result[keys[i]] = value;
+        } else {
+          result = result[keys[i]];
+        }
+        //result = this.resume
+        //keys = ['skills', '0', 'name']
+        //i=0 result === result['skills'] === this.resume.skills
+        //i=1 result === result['0'] === this.resume.skills.0
+        //i=2 result === result['name'] === this.resume.skills.0.name
+        //result === this.resume['skills']['0']['name']
+      }
     },
   },
-  template:`
+  template: `
         <div class="resume">
         <section>
           <h1>
@@ -93,5 +112,6 @@ Vue.component('resume',{
           </ol>
         </section>
       </div>
-  `
+  `,
+  
 })
