@@ -48,7 +48,7 @@ Vue.component('resume', {
   },
   template: `
         <div class="resume">
-        <section>
+        <section class="header">
           <h1>
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.name" v-on:edit="onEdit('name' , $event)"></editable-span>
           </h1>

@@ -14,20 +14,37 @@
       outline:none;
     }
     div[v-cloak]{display: none;}
-    body{
+    .page{
+      height: 100vh;
       font-size: 18px;
+    }
+    .page::before{
+      width: 100vw;
+      height: 100vh;
+      background-image: url(./17.jpg);
+      background-size: cover;
+      background-position: center center;
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;/*-1 可以当背景*/
+      opacity: 0.6;
+      /* filter: blur(3px); */
     }
     .buttonTop{
       font-size: inherit;
-      background-color: rgb(158, 158, 233);
+      color:inherit;
+      background-color: rgb(116, 54, 75);
       border: none;
       border-radius: 5px;
       margin-top: 30px;
-      padding: 15px
+      padding: 15px;
+      box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);
     }
     .buttonTop:hover{
       font-size: inherit;
-      background-color: rgb(80, 80, 223);
+      background-color: rgb(241, 78, 133);
       border: none;
       border-radius: 5px;
       margin-top: 30px;
@@ -35,19 +52,21 @@
     }
     .buttonDown{
       font-size: inherit;
-      background-color: rgb(158, 158, 233);
+      color:white;
+      background-color: rgb(116, 54, 75);
       border: none;
       border-radius: 5px;
       margin-top: 30px;
-      padding: 15px
+      padding: 15px;
+      box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);
     }
     .buttonDown:hover{
       font-size: inherit;
-      background-color: rgb(158, 158, 233);
+      background-color: rgb(241, 78, 133);
       border: none;
       border-radius: 5px;
       margin-top: 30px;
-      padding: 15px
+      padding: 15px;
     }
 
     a {
@@ -62,6 +81,7 @@
 
     @media (min-width: 500px) {
       .page {
+        width: 100vw;
         height: 100vh;
         overflow: hidden;
         display: flex;
@@ -72,15 +92,16 @@
       justify-content: space-between;
     }
     .page aside {
-      border: 1px solid #ddd;
       width: 100px;
       display: flex;
+      background: #292931;
       flex-direction: column;
       justify-content: space-between ;
       text-align: center;
       flex-shrink: 0;
     }
     .page aside >.upper{
+      color: #FFF;
       display: flex;
       flex-direction: column;
     }
