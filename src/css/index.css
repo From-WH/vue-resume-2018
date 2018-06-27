@@ -86,7 +86,7 @@
     }
     .page main {
       width: 100vw;
-      padding-right: 100px;
+      padding-right: 80px;
       border: 1px solid #ddd;
       flex-grow: 1;
       overflow: auto;

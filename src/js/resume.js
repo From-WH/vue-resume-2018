@@ -1,5 +1,5 @@
 Vue.component('resume', {
-  props: ['mode', 'displayResume', 'resume'],
+  props: ['mode', 'displayresume', 'resume'],
   data() {
     return {}
   },
@@ -50,25 +50,25 @@ Vue.component('resume', {
         <div class="resume">
         <section>
           <h1>
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.name" v-on:edit="onEdit('name' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.name" v-on:edit="onEdit('name' , $event)"></editable-span>
           </h1>
           <p>应聘职位：
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.jobTitle" v-on:edit="onEdit('jobTitle' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.jobTitle" v-on:edit="onEdit('jobTitle' , $event)"></editable-span>
           </p>
           <p class="profile">生日：
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
             ||性别：
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.gender" v-on:edit="onEdit('gender' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.gender" v-on:edit="onEdit('gender' , $event)"></editable-span>
             ||Email：
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
             ||Phone：
-            <editable-span :disabled="mode ==='preview'" v-bind:value="displayResume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
+            <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
           </p>
         </section>
         <section class="skills">
           <h2>技能</h2>
           <ul>
-            <li class="skillSet" v-for="skill,index in displayResume.skills">
+            <li class="skillSet" v-for="skill,index in displayresume.skills">
               <editable-span class="name" :disabled="mode ==='preview'" :value="skill.name" @edit="onEdit('skills['+index+'].name',$event)"></editable-span>
               <div class="description">
                 <editable-span :disabled="mode ==='preview'" :value="skill.description" @edit="onEdit('skills['+index+'].description',$event)"></editable-span>
@@ -84,7 +84,7 @@ Vue.component('resume', {
         <section class="projects">
           <h2>项目经历</h2>
           <ol>
-            <li v-for="project,index in displayResume.projects">
+            <li v-for="project,index in displayresume.projects">
               <header>
                 <div class="start">
                   <h3 class="name">

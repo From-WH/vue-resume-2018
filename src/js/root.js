@@ -1,8 +1,3 @@
-// 2. 定义路由
-// 每个路由应该映射一个组件。 其中"component" 可以是
-// 通过 Vue.extend() 创建的组件构造器，
-// 或者，只是一个组件配置对象。
-// 我们晚点再讨论嵌套路由。
 const routes = [{
     path: '/',
     component: window.App
@@ -30,6 +25,8 @@ const root = new Vue({
   router,
   data() {
     return {
+      previewResume: {
+      },
       currentUser: {},
       skinPickerVisible: false,
       shareVisible: false,
@@ -66,10 +63,13 @@ const root = new Vue({
           keywords: '请填写技术栈',
           description: '请详细描述你的项目'
         }],
-        currentUser: {
-          objectId: undefined,
-          email: '',
-        },
+      },
+      currentUser: {
+        objectId: undefined,
+        email: '',
+      },
+      previewUser: {
+        objectId: undefined,
       },
     }
   },
@@ -130,18 +130,18 @@ const root = new Vue({
       alert('注销成功')
       window.location.reload()
     },
-    getResume(user){
+    getResume(user) {
       let query = new AV.Query('User');
       return query.get(user.objectId).then((user) => {
-          let resume = user.toJSON().resume
-          return resume;
+        let resume = user.toJSON().resume
+        return resume;
       }, (error) => {
-          // 异常处理
+        // 异常处理
       });
-  },
+    },
   },
   computed: {
-    displayResume() {
+    displayresume() {
       return this.mode === 'preview' ? this.previewResume : this.resume
     }
   },
@@ -158,19 +158,16 @@ const root = new Vue({
 
 }).$mount('#root')
 
+
 // 获取当前用户
 let currentUser = AV.User.current()
 if (currentUser) {
   root.currentUser = currentUser.toJSON()
-  
-  console.log(root.currentUser);
-  
   root.shareLink = location.origin + location.pathname + '?user_id=' + root.currentUser.objectId
   root.getResume(root.currentUser).then(resume => {
     root.resume = resume
   })
 }
-
 
 // 获取预览用户的 id
 let search = location.search
@@ -179,7 +176,6 @@ let matches = search.match(regex)
 let userId
 if (matches) {
   userId = matches[1]
-  console.log(userId)
   root.mode = 'preview'
   root.getResume({
     objectId: userId

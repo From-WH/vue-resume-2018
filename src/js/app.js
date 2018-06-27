@@ -4,7 +4,7 @@ window.App = {
   <div>
     <app-aside v-show="mode === 'edit'" :logoutvisible="true"  @logout="onLogOut" @save="onClickSave" @share="onShare" @print="print" @skin="changeSkin"></app-aside>
     <main id="main">
-      <resume :mode="mode" :display-resume="displayResume"></resume>
+      <resume :mode="mode" :displayresume="displayresume" :resume="resume"></resume>
     </main>
     <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
   </div>
@@ -24,7 +24,6 @@ window.App = {
       previewUser: {
         objectId: undefined,
       },
-      previewResume: {},
       shareLink: '不晓得',
       mode: 'edit' // 'preview'
     }
@@ -32,8 +31,6 @@ window.App = {
   methods: {
     hasLogin() {
       return !!root.currentUser.objectId
-      console.log(this.currentUser.objectId);
-      
     },
     changeSkin() {
         root.skinPickerVisible = true
@@ -44,12 +41,6 @@ window.App = {
       } else {
         alert('请先登录～')
       }
-    },
-    onLogin(user) {
-      this.currentUser.id = user.id
-      this.currentUser.email = user.email
-      this.loginVisible = false
-      window.location.reload()
     },
     onEdit(key, value) {
       let regex = reg = /\[(\d+)\]/g
@@ -86,10 +77,11 @@ window.App = {
         objectId
       } = AV.User.current().toJSON()
       let user = AV.Object.createWithoutData('User', objectId)
-      user.set('resume', this.resume)
+      user.set('resume', root.resume)
       user.save().then(() => {
         alert('保存成功')
       }, () => {
+
         alert('保存失败')
       })
     },
@@ -101,11 +93,6 @@ window.App = {
     print() {
       window.print()
     },
-  },
-  computed: {
-    displayResume() {
-      return this.mode === 'preview' ? this.previewResume : this.resume
-    }
   },
 }
 Vue.component('app', App)

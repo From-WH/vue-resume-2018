@@ -1,7 +1,7 @@
 .page{
   padding: 20px;
 }
-.page>aside{
+.page aside{
   display: none;
 }
 .skills .addAndRemove,
@@ -9,4 +9,8 @@
 .projects .remove,
 .projects .addAndRemove{
   display: none;
+}
+.page main{
+  border: none;
+  margin-left: 10px;
 }
