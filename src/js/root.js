@@ -77,10 +77,6 @@ const root = new Vue({
     hasLogin() {
       return !!this.currentUser.objectId
     },
-    changeSkin() {
-      skinPickerVisible = !skinPickerVisible
-
-    },
     onLogin(user) {
       this.currentUser.objectId = user.objectId;
       this.currentUser.email = user.email;
@@ -90,7 +86,7 @@ const root = new Vue({
       })
       alert('登陆成功')
       this.$router.push('/')
-      this.logoutVisible = true;
+      root.logoutVisible = true;
     },
     onSignUp(e) {
       const user = new AV.User();
@@ -117,12 +113,10 @@ const root = new Vue({
       }
     },
     changeSkin() {
-      console.log(3)
-      if (this.skinPickerVisible === false) {
-
-        this.skinPickerVisible = true
+      if (root.skinPickerVisible === false) {
+        root.skinPickerVisible = true
       } else {
-        this.skinPickerVisible = false
+        root.skinPickerVisible = false
       }
     },
     onLogOut() {
@@ -158,7 +152,8 @@ const root = new Vue({
 
 }).$mount('#root')
 
-
+console.log(root.previewResume);
+console.log(root.resume);
 // 获取当前用户
 let currentUser = AV.User.current()
 if (currentUser) {

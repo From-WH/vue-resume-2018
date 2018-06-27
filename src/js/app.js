@@ -2,11 +2,11 @@ window.App = {
   props: ['displayresume', 'mode', 'resume', 'logoutvisible'],
   template: `
   <div>
-    <app-aside v-show="mode === 'edit'" :logoutvisible="true"  @logout="onLogOut" @save="onClickSave" @share="onShare" @print="print" @skin="changeSkin"></app-aside>
+    <app-aside v-show="mode === 'edit'" :logoutvisible="logoutvisible"  @logout="onLogOut" @save="onClickSave" @share="onShare" @print="print" @skin="changeSkin"></app-aside>
     <main id="main">
       <resume :mode="mode" :displayresume="displayresume" :resume="resume"></resume>
     </main>
-    <button class="exitPreview" @click="mode='edit'" v-if="mode==='preview'">退出预览</button>
+    <button class="exitPreview" @click="goHome" v-if="mode==='preview'">回到首页</button>
   </div>
   `,
   data() {
@@ -29,11 +29,14 @@ window.App = {
     }
   },
   methods: {
+    goHome() {
+      window.location.href = location.origin + location.pathname;
+    },
     hasLogin() {
       return !!root.currentUser.objectId
     },
     changeSkin() {
-        root.skinPickerVisible = true
+      root.skinPickerVisible = true
     },
     onShare() {
       if (root.hasLogin()) {
