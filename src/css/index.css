@@ -10,6 +10,12 @@
     *::before {
       box-sizing: border-box
     }
+    .icon {
+      width: 25px; height: 25px;
+      vertical-align: -0.15em;
+      fill: currentColor;
+      overflow: hidden;
+   }
     button{
       outline:none;
     }
@@ -17,20 +23,6 @@
     .page{
       height: 100vh;
       font-size: 18px;
-    }
-    .page::before{
-      width: 100vw;
-      height: 100vh;
-      background-image: url(./17.jpg);
-      background-size: cover;
-      background-position: center center;
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: -1;/*-1 可以当背景*/
-      opacity: 0.6;
-      /* filter: blur(3px); */
     }
     .buttonTop{
       font-size: inherit;

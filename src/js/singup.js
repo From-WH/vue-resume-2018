@@ -3,7 +3,7 @@ window.SignUp={
     return{
       signUp: {
         email: '',
-        password: ''
+        password: '',
       },
     }
   },
@@ -32,20 +32,20 @@ window.SignUp={
     <div class="signUp" v-cloak>
     <form class="form" @submit.prevent="onSignUp">
       <!-- .prevent 事件修饰符 -->
-      <h2>注册</h2>
-      <router-link to="/">关闭</router-link>
+      <h2>Sign up</h2>
+      <router-link to="/"><svg class="icon" aria-hidden="true">
+      <use xlink:href="#icon-close"></use>
+      </svg></router-link>
       <!-- 不加type会出现aleat内容-->
       <div class="row">
-        <label>注册邮箱</label>
-        <input type="text" v-model="signUp.email">
+        <input type="text" required="required" placeholder="设置登录邮箱" v-model="signUp.email">
       </div>
       <div class="row">
-        <label>密码</label>
-        <input type="password" v-model="signUp.password">
+        <input type="password" required="required" placeholder="设置登录密码" v-model="signUp.password">
       </div>
       <div class="actions">
-        <button type="submit">提交</button>
-        <router-link to="/login">登录</router-link>
+        <button class="but1" type="submit">submit</button>
+        <router-link class="but2" to="/login">login</router-link>
       </div>
     </form>
   </div>

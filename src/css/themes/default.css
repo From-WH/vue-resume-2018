@@ -1,3 +1,17 @@
+.page::before{
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../17.jpg);
+  background-size: cover;
+  background-position: center center;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;/*-1 可以当背景*/
+  opacity: 0.6;
+  /* filter: blur(3px); */
+}
 body.default .resume{
   min-width: 800px;
   margin: 0 auto;

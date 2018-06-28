@@ -69,6 +69,8 @@ window.App = {
     },
     onClickSave() {
       let currentUser = AV.User.current();
+      console.log(currentUser);
+      
       if (!currentUser) {
         this.$router.push('./login')
       } else {
@@ -80,7 +82,9 @@ window.App = {
         objectId
       } = AV.User.current().toJSON()
       let user = AV.Object.createWithoutData('User', objectId)
-      user.set('resume', root.resume)
+      console.log(this.resume);
+      
+      user.set('resume', this.resume)
       user.save().then(() => {
         alert('保存成功')
       }, () => {

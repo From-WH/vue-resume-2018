@@ -27,21 +27,21 @@ window.Login={
   template: `
   <div class="login" v-cloak>
   <form @submit.prevent="onLogin" class="form">
-    <h2>登录</h2>
-    <router-link to="/">关闭</router-link>
+    <h2>Login</h2>
+    <router-link to="/"><svg class="icon" aria-hidden="true">
+    <use xlink:href="#icon-close"></use>
+    </svg></router-link>
     <div class="row">
-      <label>邮箱</label>
-      <input type="text" v-model="login.email">     
+      <input type="text" required="required" placeholder="邮箱" v-model="login.email">     
     </div>
     <div class="row">
-      <label>密码</label>
-      <input type="password" v-model="login.password">
+      <input type="password" required="required" placeholder="密码" v-model="login.password">
     </div>
     <div class="actions">
-      <button type="submit">确定</button>
-      <router-link to="/signUp">注册</router-link>
-    </div>
-  </form>
+      <button class="but1" type="submit">Sign in resume</button>
+      <router-link to="/signUp" class="but2">Sign up</router-link>
+      </div>
+      </form>
 </div>
   `
 }

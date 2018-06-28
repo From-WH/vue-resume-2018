@@ -112,6 +112,23 @@ const root = new Vue({
         this.saveResume()
       }
     },
+    saveResume() {
+      let {
+        objectId
+      } = AV.User.current().toJSON()
+      let user = AV.Object.createWithoutData('User', objectId)
+      console.log(user);
+      
+      console.log(this.resume);
+      
+      user.set('resume', root.resume)
+      user.save().then(() => {
+        alert('保存成功')
+      }, () => {
+
+        alert('保存失败')
+      })
+    },
     changeSkin() {
       if (root.skinPickerVisible === false) {
         root.skinPickerVisible = true
@@ -160,6 +177,7 @@ if (currentUser) {
   root.currentUser = currentUser.toJSON()
   root.shareLink = location.origin + location.pathname + '?user_id=' + root.currentUser.objectId
   root.getResume(root.currentUser).then(resume => {
+    
     root.resume = resume
   })
 }
@@ -178,3 +196,12 @@ if (matches) {
     root.previewResume = resume
   })
 }
+
+if(!!currentUser){
+  root.logoutVisible = true;
+}else{
+  root.logoutVisible = false;
+}
+
+
+
