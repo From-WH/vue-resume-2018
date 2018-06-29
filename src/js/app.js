@@ -36,11 +36,13 @@ window.App = {
       return !!root.currentUser.objectId
     },
     changeSkin() {
-      root.skinPickerVisible = true
+      root.skinPickerVisible = !root.skinPickerVisible
+      root.shareVisible = false
     },
     onShare() {
       if (root.hasLogin()) {
-        root.shareVisible = true
+        root.shareVisible = !root.shareVisible
+        root.skinPickerVisible = false
       } else {
         alert('请先登录～')
       }
@@ -70,7 +72,6 @@ window.App = {
     onClickSave() {
       let currentUser = AV.User.current();
       console.log(currentUser);
-      
       if (!currentUser) {
         this.$router.push('./login')
       } else {
@@ -92,7 +93,11 @@ window.App = {
         alert('保存失败')
       })
     },
-    onLogOut() {
+    onLogOut() {if(root.shareVisible = true){
+      root.skinPickerVisible = false
+    }else if(root.skinPickerVisible = true){
+      root.shareVisible = false
+    }
       AV.User.logOut();
       alert('注销成功')
       window.location.reload()
