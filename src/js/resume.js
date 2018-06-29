@@ -73,11 +73,17 @@ Vue.component('resume', {
               <div class="description">
                 <editable-span :disabled="mode ==='preview'" :value="skill.description" @edit="onEdit('skills['+index+'].description',$event)"></editable-span>
               </div>
-              <button id="remove" class="remove" v-if="index>=4 && mode==='edit'" @click="delateSkill(index)">X</button>
+              <svg id="remove" class="remove" v-if="index>=4 && mode==='edit'" @click="delateSkill(index)" aria-hidden="true">
+              <use xlink:href="#icon-shanchu"></use>
+            </svg>
             </li>
             <li class="addAndRemove" v-if="mode==='edit'">
-              <button @click="addSkill">添加技能</button>
-              <button @click="delateSkill">删除上一个</button>
+              <svg class="icon" @click="addSkill" aria-hidden="true">
+              <use xlink:href="#icon-zengjia"></use>
+            </svg>
+              <svg class="icon" @click="delateSkill" aria-hidden="true">
+              <use xlink:href="#icon-jianqu"></use>
+            </svg>
             </li>
           </ul>
         </section>
@@ -103,11 +109,17 @@ Vue.component('resume', {
               <p class="description">
                 <editable-span :disabled="mode ==='preview'" :value="project.description" @edit="onEdit('projects['+index+'].description', $event)"></editable-span>
               </p>
-              <button class="remove" v-if="index>=2 && mode==='edit'" @click="delateProject">删除</button>
+              <svg class="remove" v-if="index>=2 && mode==='edit'" @click="delateProject(index)" aria-hidden="true">
+                <use xlink:href="#icon-shanchu"></use>
+              </svg>
             </li>
             <li class="addAndRemove" v-if="mode==='edit'">
-              <button class="add" @click="addProject">添加项目</button>
-              <button class="removeTwo" @click="delateProject">删除项目</button>
+              <svg class="icon" @click="addProject" aria-hidden="true">
+                <use xlink:href="#icon-zengjia"></use>
+              </svg>
+              <svg class="icon" @click="delateProject" aria-hidden="true">
+                <use xlink:href="#icon-jianqu"></use>
+              </svg>
             </li>
           </ol>
         </section>

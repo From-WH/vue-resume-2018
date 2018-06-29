@@ -2,7 +2,7 @@
   position: relative;
 }
 
-.editableSpan button {
+.editableSpan svg {
   display: none;
   position: absolute;
   width: 3em;
@@ -11,12 +11,8 @@
   font-size: 18px;
 }
 
-.editableSpan:hover button {
+.editableSpan:hover svg {
   display: inline-block;
-  background-color: rgb(91, 91, 241);
-  border: none;
-  border-radius: 5px;
-  padding: 4px;
   z-index: 1;
 }
 

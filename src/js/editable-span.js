@@ -4,7 +4,9 @@ Vue.component('editable-span', {
   <span class="editableSpan">      
     <span v-show="!editting">{{value}}</span>
     <input v-show="editting" type="text" v-bind:value="value" v-on:input="triggerEdit">   
-    <button v-if="!disabled" v-on:click="editting = !editting">编辑</button>
+    <svg v-if="!disabled" v-on:click="editting = !editting" class="icon" aria-hidden="true">
+      <use xlink:href="#icon-plus-edit"></use>
+    </svg>
   </span>
   `,
   //input的值就是父集传的value   v-bind:value="value"
