@@ -1,28 +1,63 @@
-body.white{
-  background: rgb(69, 30, 85);
-  color: rgb(255, 255, 255);
+body.white:before{
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../3.jpg);
+  background-size: cover;
+  background-position: center center;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;/*-1 可以当背景*/
+  opacity: 0.6;
+  /* filter: blur(3px); */
 }
 body.white .resume{
-  max-width: 800px;
+  min-width: 800px;
   margin: 0 auto;
+  font-size: 18px;
+  background: inherit;
+  color: rgb(116, 81, 81);
+  
 }
 body.white .resume > section{
-  margin: 60px 0;
+  padding: 60px 0;
 }
 body.white .resume > section{ text-align: center;}
 body.white .resume > section > span >span > h1{ text-align: center;}
 body.white .resume > section > p{ text-align: center; margin-top: 15px;}
-body.white .resume > section > h2{ text-align: center;}
+body.white .resume > section > h1 > span{font-size: 1.8em; text-align: center;}
 body.white .resume .profile{ text-align: center;margin-top: 16px;}
+body.white .resume .skills{
+  margin-top: -20px;
+}
+body.white .resume .skills > h2{
+  font-size: 2em;
+}
+
 body.white .resume .skills > ul{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 body.white .resume .skills > ul > li{
-  width: 48%; border: 1px solid #ddd; margin-top: 15px; padding: 10px;
+  width: 40%; border: 1px solid #ddd; margin: 26px 5%; padding: 10px 40px; border-radius: 4px; color: rgb(116, 81, 81);
 }
-body.white .resume .projects  h3 {margin-right: 1em;}
+body.white .resume .skills > ul > li > .remove{
+  width: 1.5em;
+  height: 1.5em;
+  border: none;
+}
+body.white .resume .projects > h2 {font-size: 2em; margin-right: 1em; margin-top: -20px;}
+body.white .resume .projects > ol > li > .remove{
+  width: 1.5em;
+  height: 1.5em;
+  border: none;
+}
 body.white .resume .projects header{display: flex; margin-bottom: 10px; align-items: center; justify-content: space-between;}
 body.white .resume .projects .start{ display: flex;}
-body.white .resume .projects>ol>li{margin: 20px 0; padding: 10px;border:1px solid #ddd; }
+body.white .resume .projects>ol>li{margin: 20px 20%; padding: 10px;border:1px solid #ddd; border-radius: 4px;}
+.skills > ul > li {position: relative;}
+.skills > ul > li .remove {position: absolute; top: 0; right: 0;}
+.projects > ol > li {position: relative; }
+.projects > ol > li .remove {position: absolute; bottom: 0; right: 0;}

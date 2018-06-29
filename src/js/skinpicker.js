@@ -8,7 +8,7 @@ Vue.component('skinpicker',{
       奢华暗黑
     </button>
     <button class="button3" @click="setTheme('white')">
-      至尊商务
+      梦幻水晶
     </button>
     <svg class="icon" @click="close" aria-hidden="true">
       <use xlink:href="#icon-close"></use>
@@ -18,6 +18,7 @@ Vue.component('skinpicker',{
   methods:{
     setTheme(name){
       document.body.className = name
+      root.skinPickerVisible = false
     },
     close(){
       root.skinPickerVisible = false

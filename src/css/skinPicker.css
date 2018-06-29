@@ -21,16 +21,16 @@
   border-radius: 4px;
 }
 .skinPicker > .button1{
-  background-color: white;
-  color: rgb(0, 0, 0);
+  background-color: #EBFAFD;
+  color: rgb(85, 141, 194);
 }
 .skinPicker > .button2{
-  background-color: rgb(0, 0, 0);
-  color: #FFF;
+  background-color: #1B2B3B;
+  color: rgb(172, 172, 172);
 }
 .skinPicker > .button3{
-  background-color: rgb(73, 55, 97);
-  color: rgb(229, 192, 192);
+  background-color: #FBB466;
+  color: rgb(238, 74, 74);
 }
 .skinPicker > .button1:hover,.button2:hover,.button3:hover{
   box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);

@@ -13,6 +13,23 @@
 }
 .share > svg{
   color: #FFF;
+  position: absolute;
+  top: -2px;
+  right: -2px;
+}
+.share > .btn{
+  font-size: inherit;
+  color:white;
+  background-color: rgb(116, 54, 75);
+  border: none;
+  margin-left: 10px;
+  border-radius: 5px;
+  padding: 5px;
+  box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);
+}
+.share > .btn:hover{
+  background-color: rgb(138, 72, 94);
+  transition: 0.4s all;
 }
 .share textarea{
   word-break: break-all; 
@@ -30,4 +47,5 @@
   border-bottom: 1px solid #56536A;
   border-radius: 6px;
   background-color: rgb(116, 54, 75);
+  box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);
 }
