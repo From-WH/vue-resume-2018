@@ -1,7 +1,7 @@
 .skinPicker{
   position: fixed;
   min-width: 500px;
-  min-height: 150px;
+  min-height: 4em;
   transform: translateX(-50%,-50%);
   top: 50%;
   left: 50%;
@@ -9,7 +9,29 @@
   margin-left: -250px;
   margin-top: -150px;
   box-shadow: 0 0 5px black;
-  background-color: #ddd;
-  z-index: 999;
-
+  background-color: #292931;
+}
+.skinPicker > svg{
+  color: #FFF;
+}
+.skinPicker > .button1,.button2,.button3{
+  width: 5em;
+  height: 3em;
+  border: none;
+  border-radius: 4px;
+}
+.skinPicker > .button1{
+  background-color: white;
+  color: rgb(0, 0, 0);
+}
+.skinPicker > .button2{
+  background-color: rgb(0, 0, 0);
+  color: #FFF;
+}
+.skinPicker > .button3{
+  background-color: rgb(73, 55, 97);
+  color: rgb(229, 192, 192);
+}
+.skinPicker > .button1:hover,.button2:hover,.button3:hover{
+  box-shadow: 0px 0px 2px 1px rgb(241, 78, 133);
 }

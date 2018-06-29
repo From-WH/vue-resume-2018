@@ -9,6 +9,7 @@
   left: 100%;
   top: 0;
   font-size: 18px;
+  color: rgb(185, 57, 57);
 }
 
 .editableSpan:hover svg {

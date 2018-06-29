@@ -8,7 +8,7 @@
     *,
     *::after,
     *::before {
-      box-sizing: border-box
+      box-sizing: border-box;
     }
     .icon {
       width: 25px; height: 25px;

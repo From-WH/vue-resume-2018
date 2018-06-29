@@ -1,16 +1,18 @@
 Vue.component('skinpicker',{
   template:`
     <div class="skinPicker"  v-cloak>
-    <button @click="setTheme('default')">
+    <button class="button1" @click="setTheme('default')">
       默认皮肤
     </button>
-    <button @click="setTheme('dark')">
+    <button class="button2" @click="setTheme('dark')">
       奢华暗黑
     </button>
-    <button @click="setTheme('white')">
+    <button class="button3" @click="setTheme('white')">
       至尊商务
     </button>
-    <span @click="close">关闭</span>  
+    <svg class="icon" @click="close" aria-hidden="true">
+      <use xlink:href="#icon-close"></use>
+    </svg>  
   </div>
   `,
   methods:{
