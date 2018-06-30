@@ -17,6 +17,9 @@
   letter-spacing: 1px;
   text-align: center;
 }
+body.dark > .page >.login > .form > h2 {
+  color: #FFF;
+}
 h2{
   font-size: 2em;
   margin: 0.67em 0;

@@ -18,8 +18,7 @@
 
 <body class="default">
   <div class="page" id="root">
-      <div class="yinying"></div>
-    <router-view :logoutvisible="logoutVisible" @skin="$emit('skin')"  :displayresume="displayresume" :mode="mode" @login="onLogin" :resume="resume" @signup="onSignUp" @save="onClickSave"  @logout="onLogOut"></router-view>
+    <router-view :logoutvisible="logoutVisible" @skin="$emit('skin')" :displayresume="displayresume" :mode="mode" @login="onLogin" :resume="resume" @signup="onSignUp" @save="onClickSave"  @logout="onLogOut"></router-view>
 
     <!-- <login v-show="loginVisible" @close="loginVisible = false" @login="onLogin"></login>
     <sigup v-show="signUpVisible"></sigup> -->
@@ -27,11 +26,11 @@
     <skinpicker v-show="skinPickerVisible" @skin="changeSkin"></skinpicker>
   </div>
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-  <script src="//at.alicdn.com/t/font_724619_4smamcb7l6g.js"></script>
-  <script src="../node_modules/clipboard/dist/clipboard.min.js"></script>
-  <script src="../vendors/av-min.js"></script>
-  <script src="./js/av.js"></script>
   <script src="../vendors/vue.min.js"></script>
+  <script src="//at.alicdn.com/t/font_724619_4smamcb7l6g.js"></script>
+  <script src="../vendors/av-min.js"></script>
+  <script src="../node_modules/clipboard/dist/clipboard.min.js"></script>
+  <script src="./js/av.js"></script>
   <script src="../vendors/vue-router.min.js"></script>
   <script src="./js/editable-span.js"></script>
   <script src="./js/login.js"></script>

@@ -38,7 +38,7 @@ window.SignUp={
       </svg></router-link>
       <!-- 不加type会出现aleat内容-->
       <div class="row">
-        <input type="text" required="required" placeholder="设置登录邮箱" v-model="signUp.email">
+        <input type="email" required="required" placeholder="设置登录邮箱" v-model="signUp.email">
       </div>
       <div class="row">
         <input type="password" required="required" placeholder="设置登录密码" v-model="signUp.password">

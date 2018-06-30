@@ -17,6 +17,7 @@ body.dark::before{
   opacity: 0.6;
   /* filter: blur(3px); */
 }
+
 body.dark .resume{
   min-width: 800px;
   margin: 0 auto;

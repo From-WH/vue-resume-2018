@@ -32,7 +32,7 @@ window.Login={
     <use xlink:href="#icon-close"></use>
     </svg></router-link>
     <div class="row">
-      <input type="text" required="required" placeholder="邮箱" v-model="login.email">     
+      <input type="email" required="required" placeholder="邮箱" v-model="login.email">
     </div>
     <div class="row">
       <input type="password" required="required" placeholder="密码" v-model="login.password">
