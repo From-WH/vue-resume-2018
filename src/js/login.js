@@ -38,8 +38,8 @@ window.Login={
       <input type="password" required="required" placeholder="密码" v-model="login.password">
     </div>
     <div class="actions">
-      <button class="but1" type="submit">Sign in resume</button>
-      <router-link to="/signUp" class="but2">Sign up</router-link>
+      <button class="but1" type="submit">登录</button>
+      <router-link to="/signUp" class="but2">注册</router-link>
       </div>
       </form>
 </div>

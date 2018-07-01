@@ -20,6 +20,9 @@
 body.dark > .page >.login > .form > h2 {
   color: #FFF;
 }
+body.dark > .page >.signUp > .form > h2 {
+  color: #FFF;
+}
 h2{
   font-size: 2em;
   margin: 0.67em 0;

@@ -44,8 +44,8 @@ window.SignUp={
         <input type="password" required="required" placeholder="设置登录密码" v-model="signUp.password">
       </div>
       <div class="actions">
-        <button class="but1" type="submit">submit</button>
-        <router-link class="but2" to="/login">login</router-link>
+        <button class="but1" type="submit">提交注册</button>
+        <router-link class="but2" to="/login">跳转登录</router-link>
       </div>
     </form>
   </div>

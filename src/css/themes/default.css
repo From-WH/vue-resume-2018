@@ -38,6 +38,9 @@ body.default .resume .skills > ul{
   flex-wrap: wrap;
   justify-content: space-between;
 }
+body.default .resume .skills > ul > svg{
+  text-align: center;
+}
 body.default .resume .skills > ul > li{
   width: 40%; border: 1px solid #ddd; margin: 26px 5%; padding: 10px 40px; border-radius: 4px;
 }

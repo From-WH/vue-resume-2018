@@ -77,15 +77,10 @@ Vue.component('resume', {
               <use xlink:href="#icon-shanchu"></use>
             </svg>
             </li>
-            <li class="addAndRemove" v-if="mode==='edit'">
-              <svg class="icon" @click="addSkill" aria-hidden="true">
-              <use xlink:href="#icon-zengjia"></use>
-            </svg>
-              <svg class="icon" @click="delateSkill" aria-hidden="true">
-              <use xlink:href="#icon-jianqu"></use>
-            </svg>
-            </li>
           </ul>
+          <svg class="icon" @click="addSkill" aria-hidden="true">
+          <use xlink:href="#icon-zengjia"></use>
+        </svg>
         </section>
         <section class="projects">
           <h2>项目经历</h2>
@@ -113,15 +108,10 @@ Vue.component('resume', {
                 <use xlink:href="#icon-shanchu"></use>
               </svg>
             </li>
-            <li class="addAndRemove" v-if="mode==='edit'">
-              <svg class="icon" @click="addProject" aria-hidden="true">
-                <use xlink:href="#icon-zengjia"></use>
-              </svg>
-              <svg class="icon" @click="delateProject" aria-hidden="true">
-                <use xlink:href="#icon-jianqu"></use>
-              </svg>
-            </li>
           </ol>
+          <svg class="icon" @click="addProject" aria-hidden="true">
+            <use xlink:href="#icon-zengjia"></use>
+          </svg>
         </section>
       </div>
   `,

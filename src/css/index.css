@@ -105,6 +105,12 @@
       flex-grow: 1;
       overflow: auto;
     }
+    .page main .resume .projects .start .name span{
+      font-size: 18px;
+    }
+    .page main .resume .projects .start .link{
+      margin-left: 10px;
+    }
     .button{
       padding: 5px;
       margin-bottom: 8px;
