@@ -72,6 +72,9 @@
     ul {
       list-style: none;
     }
+  editableSpan{
+      margin-right: 20px;
+    }
 
     @media (min-width: 500px) {
       .page {

@@ -55,13 +55,22 @@ Vue.component('resume', {
           <p>应聘职位：
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.jobTitle" v-on:edit="onEdit('jobTitle' , $event)"></editable-span>
           </p>
-          <p class="profile">生日：
+          <p class="profile"> 
+             <svg class="icon" aria-hidden="true">
+             <use xlink:href="#icon-shengri"></use>
+             </svg>
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.birthday" v-on:edit="onEdit('birthday' , $event)"></editable-span>
-            ||性别：
+             <svg class="icon" aria-hidden="true">
+               <use xlink:href="#icon-xingbie"></xingbie>
+             </svg>
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.gender" v-on:edit="onEdit('gender' , $event)"></editable-span>
-            ||Email：
+            <svg class="icon" aria-hidden="true">
+               <use xlink:href="#icon-email"></use>
+            </svg>
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.emal" v-on:edit="onEdit('emal' , $event)"></editable-span>
-            ||Phone：
+             <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-shouji"></use>
+             </svg>
             <editable-span :disabled="mode ==='preview'" v-bind:value="displayresume.phone" v-on:edit="onEdit('phone' , $event)"></editable-span>
           </p>
         </section>
@@ -115,5 +124,5 @@ Vue.component('resume', {
         </section>
       </div>
   `,
-  
+
 })
