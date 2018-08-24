@@ -117,10 +117,6 @@ const root = new Vue({
         objectId
       } = AV.User.current().toJSON()
       let user = AV.Object.createWithoutData('User', objectId)
-      console.log(user);
-      
-      console.log(this.resume);
-      
       user.set('resume', root.resume)
       user.save().then(() => {
         alert('保存成功')
